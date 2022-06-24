@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management System Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    body{
+      display:flex;
+      justify-content:center;
+    }
+    .book-content{
+      color:green;
+      font-weight:bold;
+      font-size:25px;
+    }
+    .book-content span{
+      color:black;
+    }
+    .book-container{
+      width:40%;
+      margin-top:70px;
+      margin-bottom:30px;
+    }
+    .book a,button{
+      width:100px;
+      height:40px;
+      
+    }
+  </style>
+  <body>
+    <div class="book-container">
+      <div class="book" id="book-name"></div>
+      <div class="book" id="author-name"></div>
+      <div class="book" id="book-desc"></div>
+      <div class="book" id="book-quantity"></div>
+      <div class="book" class="update-delete-btn">
+        <a
+          class="btn btn-outline-primary btn-sm book"
+          href="{% url 'base:update-book' pk %}"
+          role="button"
+          >Update</a
+        >
+        <button
+          id="delete-book"
+          type="button"
+          class="btn btn-outline-primary btn-sm"
+          value="${books[i].id}"
+        >
+          DELETE
+        </button>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getCookie("csrftoken");
+      var id = "{{ pk }}";
+      fetch(`/api/book/${id}/`)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          document.getElementById(
+            "book-name"
+          ).innerHTML = `<p class="book-content">Book Name: <span> ${data.book_name}</span></p>`;
+          document.getElementById(
+            "author-name"
+          ).innerHTML = `<p class="book-content">Book Author: <span> ${data.book_author}</span></p>`;
+          document.getElementById(
+            "book-desc"
+          ).innerHTML = `<p class="book-content">Book Description: <span> ${data.book_desc}</span></p>`;
+          document.getElementById(
+            "book-quantity"
+          ).innerHTML = `<p class="book-content">Book Quantity: <span> ${data.book_available}</span></p>`;
+        });
+      var dlt = document.getElementById("delete-book");
+      dlt.addEventListener("click", function (event) {
+        fetch(`/api/book/${id}/`, {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+            "X-CSRFToken": csrftoken,
+          },
+        }).then((response) => {
+          window.location = "http://127.0.0.1:8000/main/";
+        });
+      });
+    </script>
+  </body>
+</html>

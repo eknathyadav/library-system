@@ -1,0 +1,74 @@
+{% extends 'base/book-form.html' %} {% block content %}
+<script>
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      var cookies = document.cookie.split(";");
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        // Does this cookie string begin with the name we want?
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+  var csrftoken = getCookie("csrftoken");
+  var id = "{{ pk }}";
+  fetch(`/api/book/${id}/`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      document.getElementById("book-name").value = data.book_name;
+      document.getElementById("author-name").value = data.book_author;
+      document.getElementById("book-desc").value = data.book_desc;
+      document.getElementById("book-quantity").value = data.book_available;
+    });
+  var updateBtn = document.getElementById("update-book");
+  updateBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    let bookName = document.getElementById("book-name").value;
+    let authorName = document.getElementById("author-name").value;
+    let bookDesc = document.getElementById("book-desc").value;
+    let bookQuantity = document.getElementById("book-quantity").value;
+    let data = {
+      book_name: bookName,
+      book_author: authorName,
+      book_desc: bookDesc,
+      book_available: bookQuantity,
+    };
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === name + "=") {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getCookie("csrftoken");
+    fetch(`/api/book/${id}/`, {
+      method: "PATCH",
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json; charset=utf8",
+        "X-Requested-With": "XMLHttpRequest", //Necessary to work with request.is_ajax()
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify(data), //JavaScript object of data to POST
+    }).then(() => {
+      window.location = "http://127.0.0.1:8000/main/";
+    });
+  });
+</script>
+{% endblock %}

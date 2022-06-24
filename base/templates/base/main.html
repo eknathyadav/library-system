@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library Management System Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    .main-container{
+      padding:30px;
+      width:70%;
+    }
+    h3{
+      margin-bottom:20px;
+    }
+    #add-btn{
+       margin-bottom:20px;
+    }
+    .highlight{
+      color:green;
+    }
+  </style>
+  <body>
+    <div class="main-container">
+    <h3>Welcome to admin portal, <span class="highlight">{{ request.user }} </span>
+      <a href="{% url 'base:logout-user' %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Log out</a>
+    </h3>
+    <a id="add-btn" class="btn btn-primary" href="{% url 'base:add-book' %}" role="button"
+      >Add Book</a
+    >
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Book Name</th>
+          <th scope="col">Author</th>
+          <th scope="col">Available Quantity</th>
+        </tr>
+      </thead>
+      <tbody id="row-data"></tbody>
+    </table>
+  </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
+      var csrftoken = getCookie("csrftoken");
+      fetch("/api/books/")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var books = data;
+          var tbody = document.getElementById("row-data");
+          for (var i in books) {
+            var row = 
+            `<tr>
+                <th scope="row">${books[i].id}</th>
+                    <td><a href="http://127.0.0.1:8000/show-book/${books[i].id}/"> ${ books[i].book_name } </a></td>
+                    <td>${books[i].book_author}</td>
+                    <td>${books[i].book_available}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          }
+        }).catch(function (ex) {
+          console.log("parsing failed", ex);
+        });
+    </script>
+  </body>
+</html>

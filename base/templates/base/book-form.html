@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+  body {
+        display: flex;
+        justify-content: center;
+      }
+      .form-container {
+        width: 40%;
+        height: 700px;
+        margin-top:40px;
+      }
+    </style>
+  <body>
+    <div class="form-container">
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="formGroupExampleInput">Book Name</label>
+        <input
+          type="text"
+          name="book-name"
+          class="form-control"
+          id="book-name"
+          placeholder="Type Book Name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput">Book Author Name</label>
+        <input
+          type="text"
+          name="author"
+          class="form-control"
+          id="author-name"
+          placeholder="Type Author Name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput">Book Description</label>
+        <input
+          type="textfield"
+          name="desc"
+          class="form-control"
+          id="book-desc"
+          placeholder="Type Description"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput">Book Quantity</label>
+        <input
+          type="number"
+          name="book-quantity"
+          class="form-control"
+          id="book-quantity"
+          placeholder="Type Quantity"
+        />
+      </div>
+      {% if page == 'add' %}
+      <button
+        type="submit"
+        id="add-book"
+        class="btn btn-primary"
+      />
+      Add Book
+    </button>
+    {% else %}
+      <button
+        type="submit"
+        id="update-book"
+        class="btn btn-primary"
+      />
+      Update Book
+    </button>
+    {% endif %}
+    </form>
+  </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+{% block content %}
+{% endblock %}
