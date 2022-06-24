@@ -37,6 +37,8 @@ Library System
 
 ![main](https://user-images.githubusercontent.com/48616375/175518911-3ceb0167-827b-4a92-97cf-b5198e716840.PNG)
 
+![addbook](https://user-images.githubusercontent.com/48616375/175518959-a2bc64ff-281c-4e3a-87d4-f5692d181507.PNG)
 
+![bookedit](https://user-images.githubusercontent.com/48616375/175518970-c5873b55-a309-41e9-b371-386a5957f8af.PNG)
 
 
