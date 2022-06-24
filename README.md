@@ -34,15 +34,8 @@ Library System
 5. Copy http://127.0.0.1:8000/ and paste it on your browser.
 
 ## Screenshots
-    ```
-    ![main](https://user-images.githubusercontent.com/48616375/175518649-5361b057-58d2-4507-bcb7-5926a68888f1.PNG)
-    ```
-    ```
-    ![addbook](https://user-images.githubusercontent.com/48616375/175518665-a0da7de0-38dd-4939-a413-5cfba0164d4a.PNG)
-    ```
-    ```
-    ![bookedit](https://user-images.githubusercontent.com/48616375/175518691-828713c3-3cc3-4ba3-97c9-63da8a6dbe4b.PNG)
-    ```
+
+![main](https://user-images.githubusercontent.com/48616375/175518911-3ceb0167-827b-4a92-97cf-b5198e716840.PNG)
 
 
 
