@@ -20,13 +20,13 @@ Library System
 ## Installation
 1. Clone the project.
    ```
-   git clone https://github.com/eknathyadav/Study-room.git
+   git clone https://github.com/eknathyadav/library-system.git
    ```
 2. Install Django framework.
    ```
    pip install django
    ```
-3. Access the Study-room folder.
+3. Access the library-system folder.
 4. Run the server.
    ```
    python manage.py runserver
