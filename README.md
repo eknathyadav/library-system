@@ -35,11 +35,14 @@ Library System
 
 ## Screenshots
 
-    ![main](https://user-images.githubusercontent.com/48616375/175518291-d5320ddd-91d1-4e40-b974-d2233acd6e7c.PNG)
+    ![main](https://user-images.githubusercontent.com/48616375/175518649-5361b057-58d2-4507-bcb7-5926a68888f1.PNG)
 
-    ![addbook](https://user-images.githubusercontent.com/48616375/175518322-cbfd2020-2f89-40bf-b31e-73f40e433cb1.PNG)
 
-    ![bookedit](https://user-images.githubusercontent.com/48616375/175518355-11b10945-7c8b-43d6-bd45-9cf2e1218e05.PNG)
+    ![addbook](https://user-images.githubusercontent.com/48616375/175518665-a0da7de0-38dd-4939-a413-5cfba0164d4a.PNG)
+
+
+    ![bookedit](https://user-images.githubusercontent.com/48616375/175518691-828713c3-3cc3-4ba3-97c9-63da8a6dbe4b.PNG)
+
 
 
 
